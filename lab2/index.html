@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Dictionary</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width = device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <script type="module" src="main.js"></script>
+</head>
+
+<body>
+  <div class="contaiter-fluid">
+    <ul class="nav nav-tabs nav-fill" id="MyTab">
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" role="tabpanel" href="#Dictionary">Dictionary</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" role="tabpanel" href="#Test">Test</a>
+      </li>
+    </ul>
+    <div class="tab-content">
+      <div class="tab-pane fade" id="Dictionary">
+        <div id="list"></div>
+        <button id="add" type="button">Add word</button>
+        <div class="modal" role="dialog" id="PopUp">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title"></h5>
+              </div>
+              <div class="modal-body">
+                <p>Word</p><input class="form-control" type="text" id="word"></input>
+                <p>Translate</p><input class="form-control" type="text" id="translate"></input>
+              </div>
+              <div class="modal-footer">
+                <button id="save" type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tab-pane fade" id="Test">
+        <input class="form-control" type="text" id="TestWord" readonly></input>
+        <div class="form-check">
+          <input class="form-check-input" name="testradio" type="radio" id="radio1" checked>
+          <div id="textradio1"></div>
+          </input>
+          <input class="form-check-input" name="testradio" type="radio" id="radio2">
+          <div id="textradio2"></div>
+          </input>
+          <input class="form-check-input" name="testradio" type="radio" id="radio3">
+          <div id="textradio3"></div>
+          </input>
+        </div>
+        <button id="tsave" type="button" class="btn btn-primary"></button>
+        <div class="modal" role="dialog" id="testResult">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Test result</h5>
+              </div>
+              <div class="modal-body">
+                <p>Your result</p><input class="form-control" type="text" id="resultLabel" readonly></input>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
