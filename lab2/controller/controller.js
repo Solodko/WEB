@@ -66,28 +66,47 @@ export default class controller {
         if(word === "" || translate === ""){
             return false;
         }
+        this.view.popupClose();
         return true;
+    }
+    saveToAnswers(){
+        if(document.getElementById("radio1").checked){
+            this.answers.push([document.getElementById("TestWord").value, document.querySelector("#textradio1").innerHTML]);
+        }
+        if(document.getElementById("radio2").checked){
+            this.answers.push([document.getElementById("TestWord").value, document.querySelector("#textradio2").innerHTML]);
+        }
+        if(document.getElementById("radio3").checked){
+            this.answers.push([document.getElementById("TestWord").value, document.querySelector("#textradio3").innerHTML]);
+        }
+    }
+
+    getKeyValue(id){
+        var iter = 0;
+        for(var [key, value] of this.Dictionary ){
+            if(iter === parseInt(id)){
+                break;
+            }
+            iter++;
+        }
+        return [key, value];
     }
     onButtonClick(e){
         if(e.target.id === "add"){
             this.view.popup();
         }
         else if(e.target.id === "save"){
-            if(this.keyToEdit == ""){
-                var word = document.getElementById("word").value;
-                var translate = document.getElementById("translate").value;
+            var word = document.getElementById("word").value;
+            var translate = document.getElementById("translate").value;
+            if(this.keyToEdit == ""){    
                 if(!this.addEditError(word, translate)) {
-                    this.view.popupClose();
                     this.view.popup();
                     return;
                 }
                 this.Dictionary.set(word, translate);
             }
             else{
-                var word = document.getElementById("word").value;
-                var translate = document.getElementById("translate").value;
                 if(!this.addEditError(word, translate)){
-                    this.view.popupClose();
                     this.view.popupEdit(word, translate);
                     return;
                 }
@@ -99,15 +118,7 @@ export default class controller {
             this.view.popupClose();
         }
         else if(e.target.id === "tsave"){
-            if(document.getElementById("radio1").checked){
-                this.answers.push([document.getElementById("TestWord").value, document.querySelector("#textradio1").innerHTML]);
-            }
-            if(document.getElementById("radio2").checked){
-                this.answers.push([document.getElementById("TestWord").value, document.querySelector("#textradio2").innerHTML]);
-            }
-            if(document.getElementById("radio3").checked){
-                this.answers.push([document.getElementById("TestWord").value, document.querySelector("#textradio3").innerHTML]);
-            }
+            this.saveToAnswers();
             if(this.testSize > 0){
                 this.test();
             }
@@ -119,14 +130,7 @@ export default class controller {
         else{
             var action = e.target.id.charAt(e.target.id.length - 1);
             var id = e.target.id.substring(0, e.target.id.length - 1);
-
-            var iter = 0;
-            for(var [key, value] of this.Dictionary ){
-                if(iter === parseInt(id)){
-                    break;
-                }
-                iter++;
-            }
+            var [key, value] = this.getKeyValue(id)
             if(action === "E"){
                 this.keyToEdit = key;
                 this.view.popupEdit(key, value);
